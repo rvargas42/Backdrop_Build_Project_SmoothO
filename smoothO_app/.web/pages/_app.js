@@ -4,8 +4,8 @@ import '/styles/styles.css'
 
 import RadixThemesColorModeProvider from "/components/reflex/radix_themes_color_mode_provider.js"
 import { Theme as RadixThemesTheme } from "@radix-ui/themes"
-import "@radix-ui/themes/styles.css"
 import theme from "/utils/theme.js"
+import { UploadFilesProvider } from "/utils/context"
 import { Fragment } from "react"
 
 
@@ -20,9 +20,11 @@ function AppWrap({children}) {
   return (
     <RadixThemesColorModeProvider>
   <RadixThemesTheme accentColor={`teal`} css={{...theme.styles.global[':root'], ...theme.styles.global.body}} hasBackground={true} radius={`small`}>
+  <UploadFilesProvider>
   <Fragment>
   {children}
 </Fragment>
+</UploadFilesProvider>
 </RadixThemesTheme>
 </RadixThemesColorModeProvider>
   )
