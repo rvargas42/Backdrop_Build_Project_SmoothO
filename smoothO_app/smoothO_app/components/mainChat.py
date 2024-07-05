@@ -26,17 +26,25 @@ class mainChatComponents():
 		)
 
 	def chatBar(self):
-		return rx.input(placeholder="Talk with your knowledge base...")
+		return rx.container(
+			rx.text_area(
+				placeholder="Talk with your knowledge base...",
+				id="textArea"
+			),
+			id="chatBar"
+		)
 	
 	def displayOutput(self):
-		return rx.scroll_area(
-			rx.flex(
-				rx.text(id="LLMResponse"), 
-				direction="column",
-				spacing="4"
+		return rx.container(
+			rx.scroll_area(
+				rx.flex(
+					rx.text(id="LLMResponse"), 
+					direction="column",
+					spacing="4"
+				),
+				type="always",
+				scrollbars="vertical",
 			),
-			type="always",
-    		scrollbars="vertical",
 			id="displayOutput",
 		)
 	
@@ -45,14 +53,15 @@ class mainChatComponents():
 		This method is the only one to be called and returns the general layout of a page content
 		'''
 		return rx.hstack(
+			rx.script(src="/assets/scripts/chatPageMain.js"),
 			rx.container(
 				self.uploadNewDoc(),
 				self.displayDocs(),
 				id="leftPanel",
 			),
 			rx.container(
-				rx.container(self.displayOutput()),
-				rx.container(self.chatBar()),
+				self.displayOutput(),
+				self.chatBar(),
 				id="rightPanel",
 			),
 			id="chatContainers"
