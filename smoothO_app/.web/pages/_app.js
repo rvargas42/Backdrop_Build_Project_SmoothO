@@ -19,7 +19,7 @@ function AppWrap({children}) {
 
   return (
     <RadixThemesColorModeProvider>
-  <RadixThemesTheme accentColor={`teal`} css={{...theme.styles.global[':root'], ...theme.styles.global.body}} hasBackground={true} radius={`small`}>
+  <RadixThemesTheme accentColor={`blue`} css={{...theme.styles.global[':root'], ...theme.styles.global.body}}>
   <UploadFilesProvider>
   <Fragment>
   {children}

@@ -1,8 +1,12 @@
 import reflex as rx
 from smoothO_app.components import mainChat
-from smoothO_app.styles import mainChatLayout
 
-@rx.page("/")
+
+"""
+All code refering to the main chat page app
+"""
+
+@rx.page("/chat")
 def chatPage():
     '''
     Layout for this page are three main containers:

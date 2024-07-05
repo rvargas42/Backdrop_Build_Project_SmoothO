@@ -3,7 +3,7 @@ import { applyDelta, Event, hydrateClientStorage, useEventLoop, refs } from "/ut
 
 export const initialState = {}
 
-export const defaultColorMode = "dark"
+export const defaultColorMode = "system"
 export const ColorModeContext = createContext(null);
 export const UploadFilesContext = createContext(null);
 export const DispatchContext = createContext(null);

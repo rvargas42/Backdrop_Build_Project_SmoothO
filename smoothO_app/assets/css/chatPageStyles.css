@@ -1,0 +1,27 @@
+
+#chatContainers{
+    background-color: black;
+    height: 99vh;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+}
+
+#rightPanel{
+    background-color: inherit;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+}
+
+#leftPanel{
+    background-color: inherit;
+    height: 90%;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+}
+
+
+/* .rightPanel{
+    height: 90%;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+} */

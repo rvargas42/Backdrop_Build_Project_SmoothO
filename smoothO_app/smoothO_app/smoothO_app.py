@@ -3,7 +3,7 @@ from .pages import chatPage
 
 
 app = rx.App(
-    theme=rx.theme(
-        appearance="dark", has_background=True, radius="small", accent_color="teal"
-    )
+    stylesheets=[
+        "/css/chatPageStyles.css",
+    ]
 )
