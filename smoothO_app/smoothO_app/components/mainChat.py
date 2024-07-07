@@ -1,6 +1,7 @@
 import reflex as rx
+from smoothO_app.styles import styles
 
-class mainChatComponents():
+class mainChatComponents(styles):
 	'''class containing components for the main chat page'''
 	
 	def activeTools(self):
@@ -9,7 +10,7 @@ class mainChatComponents():
 	def uploadNewDoc(self):
 		return rx.upload(
 			rx.text("Drag and drop files here or click to select files"),
-			id="documentUpload",
+			style=self.chatPageStyle["documentUpload"]
 		)
 
 	def displayDocs(self):
@@ -22,16 +23,17 @@ class mainChatComponents():
 			),
 			type="always",
     		scrollbars="vertical",
-			id="displayDocs",
+			style=self.chatPageStyle["displayDocs"]
 		)
 
 	def chatBar(self):
 		return rx.container(
 			rx.text_area(
 				placeholder="Talk with your knowledge base...",
+				style=self.chatPageStyle["#chatBar #textArea"],
 				id="textArea"
 			),
-			id="chatBar"
+			style=self.chatPageStyle["#chatBar"],
 		)
 	
 	def displayOutput(self):
@@ -45,7 +47,7 @@ class mainChatComponents():
 				type="always",
 				scrollbars="vertical",
 			),
-			id="displayOutput",
+			style=self.chatPageStyle["displayOutput"],
 		)
 	
 	def mainContainer(self):
@@ -53,16 +55,16 @@ class mainChatComponents():
 		This method is the only one to be called and returns the general layout of a page content
 		'''
 		return rx.hstack(
-			rx.script(src="/assets/scripts/chatPageMain.js"),
+			rx.script(src="/scripts/chatPageMain.js"),
 			rx.container(
 				self.uploadNewDoc(),
 				self.displayDocs(),
-				id="leftPanel",
+				style=self.chatPageStyle["leftPanel"]
 			),
 			rx.container(
 				self.displayOutput(),
 				self.chatBar(),
-				id="rightPanel",
+				style=self.chatPageStyle["rightPanel"],
 			),
-			id="chatContainers"
+			style=self.chatPageStyle["chatContainers"],
 		)

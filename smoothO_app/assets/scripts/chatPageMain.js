@@ -1,8 +1,17 @@
-document.addEventListener("DOMContentLoaded", function(){
-    const textarea = document.getElementById("chatBar");
-    textarea.addEventListener('input', function(){
-        this.style.height = 'auto';
-        this.style.height = this.scrollHeight + 'px';
+
+alert("this is fun");
+
+document.addEventListener("DOMContentLoaded", (Event) =>{
+    const textArea = document.getElementById("textArea");
+
+    textArea.addEventListener('input', (Event) =>{
+        textArea.style.height = 'auto';
+        textArea.style.height = textArea.scrollHeight + 'px';
     });
-    textarea.dispatchEvent(new Event('input'));
+
+    textArea.addEventListener("keypress", (Event) =>{
+        textArea.style.borderColor = "red";
+    });
+
+    textArea.style.height = textArea.scrollHeight + 'px';
 });
