@@ -1,8 +1,7 @@
 import reflex as rx
-from smoothO_app.styles import styles
 from smoothO_app.components.sidebar import sidebar
 
-class welcomeComponents(styles):
+class welcomeComponents():
 
     def test(self):
         return rx.script("alert('hello world')"), rx.text("hello world")

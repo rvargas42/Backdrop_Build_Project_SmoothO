@@ -1,18 +1,15 @@
 import reflex as rx
-from styles import styles
-
-class uploadDocState(rx.State):
-    pass
 
 class chatState(rx.State):
     query: str
     chatHistory: list[tuple[str, str]]
 
-class styleChanges(rx.State):
-    
-    def resizeTextArea(self):
+    def handleUpload(self, files: list[rx.UploadFile]):
         pass
 
+    def resizeTextArea(self):
+        rx.script("alert('hello world')")
 
     def resizeContainer(self):
         pass
+   

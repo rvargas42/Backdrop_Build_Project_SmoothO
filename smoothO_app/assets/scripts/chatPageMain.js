@@ -1,17 +1,14 @@
 
-alert("this is fun");
 
-document.addEventListener("DOMContentLoaded", (Event) =>{
-    const textArea = document.getElementById("textArea");
+document.getElementById('textArea').addEventListener('input', function () {
+    this.style.height = 0;
+    const parent = document.getElementById("rightPanel");
+    const parent_height = parent.getBoundingClientRect().height;
+    const scrollHeight = this.scrollHeight;
 
-    textArea.addEventListener('input', (Event) =>{
-        textArea.style.height = 'auto';
-        textArea.style.height = textArea.scrollHeight + 'px';
-    });
-
-    textArea.addEventListener("keypress", (Event) =>{
-        textArea.style.borderColor = "red";
-    });
-
-    textArea.style.height = textArea.scrollHeight + 'px';
-});
+    if (scrollHeight < 0.30 * parent_height) {
+        this.style.height = scrollHeight + 'px';
+    } else {
+        this.style.height = 0.30 * parent_height + 'px';
+    }
+}, false);

@@ -1,16 +1,20 @@
 import reflex as rx
-from smoothO_app.styles import styles
+from smoothO_app.state.mainChat_state import chatState
+from smoothO_app.components.navbar import navbar_buttons
 
-class mainChatComponents(styles):
+
+
+class mainChatComponents():
 	'''class containing components for the main chat page'''
-	
+
 	def activeTools(self):
-		pass
+		return rx.vstack(
+		)
 
 	def uploadNewDoc(self):
 		return rx.upload(
 			rx.text("Drag and drop files here or click to select files"),
-			style=self.chatPageStyle["documentUpload"]
+			id="",
 		)
 
 	def displayDocs(self):
@@ -23,17 +27,17 @@ class mainChatComponents(styles):
 			),
 			type="always",
     		scrollbars="vertical",
-			style=self.chatPageStyle["displayDocs"]
+			id="",
 		)
 
 	def chatBar(self):
 		return rx.container(
 			rx.text_area(
 				placeholder="Talk with your knowledge base...",
-				style=self.chatPageStyle["#chatBar #textArea"],
-				id="textArea"
+				id="textArea",
+				on_change=chatState.resizeTextArea(),
 			),
-			style=self.chatPageStyle["#chatBar"],
+			id="chatBar",
 		)
 	
 	def displayOutput(self):
@@ -47,24 +51,26 @@ class mainChatComponents(styles):
 				type="always",
 				scrollbars="vertical",
 			),
-			style=self.chatPageStyle["displayOutput"],
+			id="displayOutput",
 		)
 	
 	def mainContainer(self):
 		'''
 		This method is the only one to be called and returns the general layout of a page content
 		'''
-		return rx.hstack(
-			rx.script(src="/scripts/chatPageMain.js"),
-			rx.container(
-				self.uploadNewDoc(),
-				self.displayDocs(),
-				style=self.chatPageStyle["leftPanel"]
-			),
-			rx.container(
-				self.displayOutput(),
-				self.chatBar(),
-				style=self.chatPageStyle["rightPanel"],
-			),
-			style=self.chatPageStyle["chatContainers"],
+		return rx.vstack(
+			rx.hstack(
+				rx.script(src="/scripts/chatPageMain.js"),
+				rx.container(
+					self.uploadNewDoc(),
+					self.displayDocs(),
+					id="leftPanel",
+				),
+				rx.container(
+					self.displayOutput(),
+					self.chatBar(),
+					id="rightPanel",
+				),
+				id="chatContainers"
+			)
 		)
