@@ -1,14 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const terminalBody = document.getElementById('terminal');
+    let isLastPromptFilled = false;
 
     // Función para limpiar todos los inputs
     function clearAllInputs() {
         terminalBody.innerHTML = '';
-        const newInputLine = document.createElement('div');
-        newInputLine.classList.add('terminal-line');
-        newInputLine.innerHTML = `<span class="terminal-prompt"><b>&gt;</b></span>
-        <textarea class="terminal-input" rows="1" readonly></textarea>`;
-        terminalBody.appendChild(newInputLine);
         focusLastTextarea();
     }
 
@@ -19,19 +15,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Manejar entrada de texto
     terminalBody.addEventListener('keydown', function(event) {
         const terminalInput = event.target;
 
         if (event.key === 'Enter') {
             const command = terminalInput.value.trim();
-
+            
             if (command.toLowerCase() === "clear")
                 clearAllInputs();
+            else
+            {
+                if (command)
+                {
+                    const newOutput = document.createElement('div');
+                    newOutput.classList.add('terminal-line');
+                    newOutput.innerHTML = `<span class="terminal-prompt-out"><b>&gt;</b></span>
+                    <textarea class="terminal-output" rows="1" readonly></textarea>`;
+                    terminalBody.appendChild(newOutput);
+                    isLastPromptFilled = true;
+                } 
+                else {
+                    isLastPromptFilled = false;
+                }
+            }
             
+            console.log(isLastPromptFilled);
             const newInputLine = document.createElement('div');
             newInputLine.classList.add('terminal-line');
-            newInputLine.innerHTML = `<span class="terminal-prompt"><b>&gt;</b></span>
+            newInputLine.innerHTML = `<span class="terminal-prompt-in"><b>&gt;</b></span>
             <textarea class="terminal-input" rows="1" readonly></textarea>`;
             terminalBody.appendChild(newInputLine);
             
@@ -79,6 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    function createResponseEl(){
+        return ;
+    }
 
     function focusLastTextarea() {
         const terminalInputs = terminalBody.querySelectorAll('.terminal-input');
