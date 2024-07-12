@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para limpiar todos los inputs
     function clearAllInputs() {
         terminalBody.innerHTML = '';
+        const newInputLine = document.createElement('div');
+        newInputLine.classList.add('terminal-line');
+        newInputLine.innerHTML = `<span class="terminal-prompt"><b>&gt;</b></span>
+        <textarea class="terminal-input" rows="1" readonly></textarea>`;
+        terminalBody.appendChild(newInputLine);
+        focusLastTextarea();
     }
 
     // Manejar clic en la terminal para activar el cursor en el último input
@@ -28,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             newInputLine.innerHTML = `<span class="terminal-prompt"><b>&gt;</b></span>
             <textarea class="terminal-input" rows="1" readonly></textarea>`;
             terminalBody.appendChild(newInputLine);
-
+            
             focusLastTextarea(); // Enfocar la última textarea después de crearla
             event.preventDefault(); // Evitar el comportamiento predeterminado del Enter en el textarea
         }
@@ -64,15 +70,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     terminalBody.addEventListener('input', function(event) {
         const terminalInput = event.target;
+        const rows = Math.floor(terminalInput.scrollHeight / terminalInput.clientHeight)
         if (terminalInput.classList.contains('terminal-input')) {
-            if (terminalInput.scrollHeight > terminalInput.clientHeight) {
+            if (rows > 1) {
                 terminalInput.classList.add('show-scroll'); // Mostrar scroll si es necesario
             } else {
                 terminalInput.classList.remove('show-scroll'); // Ocultar scroll si no es necesario
             }
         }
     });
-
 
     function focusLastTextarea() {
         const terminalInputs = terminalBody.querySelectorAll('.terminal-input');
@@ -87,9 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function adjustTextareaHeight(textarea) {
-        const rowsVisible = Math.floor(textarea.scrollHeight / textarea.clientHeight);
-        if (rowsVisible < 2)
-            return ;
         textarea.style.height = 'auto';
         textarea.style.height = (textarea.scrollHeight) + 'px';
     }
