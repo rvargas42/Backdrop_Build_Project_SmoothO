@@ -2,16 +2,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const terminalBody = document.getElementById('terminal');
     let isLastPromptFilled = false;
 
-    // Función para limpiar todos los inputs
     function clearAllInputs() {
         terminalBody.innerHTML = '';
         focusLastTextarea();
     }
 
-    // Manejar clic en la terminal para activar el cursor en el último input
     terminalBody.addEventListener('click', function(event) {
         if (event.target.classList.contains('terminal-input')) {
-            focusLastTextarea(); // Enfocar la última textarea al hacer clic en la terminal
+            focusLastTextarea();
         }
     });
 
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             terminalBody.appendChild(newInputLine);
             
             focusLastTextarea(); // Enfocar la última textarea después de crearla
-            event.preventDefault(); // Evitar el comportamiento predeterminado del Enter en el textarea
+            event.preventDefault();
         }
     });
 
@@ -59,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Escuchar evento 'copy' para ajustar la altura después de copiar
     terminalBody.addEventListener('copy', function(event) {
         const terminalInput = event.target;
         if (terminalInput.classList.contains('terminal-input')) {
@@ -69,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Escuchar evento 'paste' para ajustar la altura después de pegar
     terminalBody.addEventListener('paste', function(event) {
         const terminalInput = event.target;
         if (terminalInput.classList.contains('terminal-input')) {
@@ -84,16 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const rows = Math.floor(terminalInput.scrollHeight / terminalInput.clientHeight)
         if (terminalInput.classList.contains('terminal-input')) {
             if (rows > 1) {
-                terminalInput.classList.add('show-scroll'); // Mostrar scroll si es necesario
+                terminalInput.classList.add('show-scroll');
             } else {
-                terminalInput.classList.remove('show-scroll'); // Ocultar scroll si no es necesario
+                terminalInput.classList.remove('show-scroll');
             }
         }
     });
-
-    function createResponseEl(){
-        return ;
-    }
 
     function focusLastTextarea() {
         const terminalInputs = terminalBody.querySelectorAll('.terminal-input');

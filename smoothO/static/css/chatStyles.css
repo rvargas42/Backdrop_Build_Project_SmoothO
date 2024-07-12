@@ -77,9 +77,8 @@
     overflow-wrap: break-word;
     width: 100vw;
     max-height: 50vh;
-    font-family: 'Courier New', Courier, monospace;
     font-size: var(--font-size);
-    font-weight: 400;
+    font-weight: 100;
 }
 
 .show-scroll{
@@ -101,23 +100,6 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: var(--font-size);
     font-weight: 400;
-}
-
-.terminal-cursor {
-    display: inline-block;
-    width: 1px;
-    height: 18px;
-    color: var(--primary-color);
-    animation: cursor-blink 1s infinite;
-}
-
-@keyframes cursor-blink {
-    0%, 100% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
 }
 
 #navbar {
@@ -177,6 +159,7 @@ body {
     height: 100vh;
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family:'Times New Roman', Times, serif;
 }
 
 p {
