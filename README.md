@@ -4,6 +4,6 @@
 > SmoothO is a AI RAG assistant for small businesses focused on data generation and classification.
 
 1. Tech stack:
-   - Reflex: front and back end management (python framework)
+   - Django: front and back
    - MongoDB: to store data
    - Docker: for service containerization
